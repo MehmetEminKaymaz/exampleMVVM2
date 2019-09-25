@@ -22,7 +22,31 @@ namespace EnterpriseMVVM.ViewModels
             //
         }
 
-        public Product SelectedItem { get; set; }
+           private Product selectedItem;
+        public Product SelectedItem
+        {
+            get
+            {
+                return this.selectedItem;
+            }
+            set
+            {
+                selectedItem = value;
+                OnUpdate(selectedItem);
+
+            }
+
+        }
+
+        private void OnUpdate(Product p)
+        {
+            if (p != null)
+            {
+                this.Txtcontent = p.Content;
+                this.Txtname = p.Name;
+                this.Txtprice = p.Price.ToString("C2");
+            }
+        }
 
         public ObservableCollection<Product> Products
         {
